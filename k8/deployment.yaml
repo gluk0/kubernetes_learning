@@ -1,0 +1,27 @@
+# Define the name of the deployment 
+# and application label. 
+apiVersion: apps/v1
+kind: Deployment
+metadata: 
+  name: fast-api 
+  labels: 
+    app: fast-api
+spec:
+  replicas: 1
+  selector: 
+    matchLabels:
+      app: fast-api
+  template:
+    metadata:
+      labels:
+        app: fast-api
+    spec:
+      containers:
+      - name: fast-api-container 
+        image: glukae/k8s-fast-api:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 200m
+            memory: 250Mi
